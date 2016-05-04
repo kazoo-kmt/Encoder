@@ -8,26 +8,26 @@ int tick_cnt = 0;  // variable to be updated by the interrupt
 //int ledPin = 6;  // LED is attached to digital pin 6 (you can choose)
 
 void setup() {                
-  //enable interrupt 0 (pin 2) which is connected to a button for right wheel
-  //enable interrupt 1 (pin 3) which is connected to a button for left wheel
+  //enable interrupt 0 (pin 3) which is connected to a button for right wheel
+  //enable interrupt 1 (pin 2) which is connected to a button for left wheel
+  // See which pin to choose from here: https://www.arduino.cc/en/Reference/AttachInterrupt
   
   //jump to the increment function on change edge
   attachInterrupt(0, increment, CHANGE);
+   tick_cnt = 0;  // NTR: initialize every time 
   Serial.begin(9600);  //turn on serial communication
 }
 
 void loop() {
-//  tick_cnt = 0;  // NTR: initialize every time 
-//  digitalWrite(ledPin, LOW);
-  delay(100); //pretend to be doing something useful
+//  delay(100); //pretend to be doing something useful
     Serial.println("tick_cnt"); 
     Serial.println(tick_cnt, DEC); //print tick_cnt to serial monitor
-//    Serial.println("convert_to_angle"); 
-//    Serial.println(convert_to_angle(tick_cnt));
-//    Serial.println("convert_to_distance"); 
-//    Serial.println(convert_to_distance(convert_to_angle(tick_cnt)));
-//
-//    Serial.println("---------------------"); 
+    Serial.println("convert_to_angle"); 
+    Serial.println(convert_to_angle(tick_cnt));
+    Serial.println("convert_to_distance"); 
+    Serial.println(convert_to_distance(convert_to_angle(tick_cnt)));
+
+    Serial.println("---------------------"); 
     
     delay(50);
 
@@ -38,7 +38,6 @@ void loop() {
 // Count every tick or hole on the wheel
 void increment() {
     tick_cnt++;
-//    digitalWrite(ledPin, HIGH);
 }
 
 // Convert the number of ticks and holes to angle (radius)
