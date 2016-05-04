@@ -1,3 +1,11 @@
+
+// Note for me.......... Delete later
+// This code is for digital sensor, and wrong for analog IR sensor. 
+// You can use Photosensor code which is in EECS class folder
+
+
+
+
 int SensorPin=2;
 int SensorValue=LOW;
 
